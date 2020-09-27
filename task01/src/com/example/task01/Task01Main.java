@@ -1,11 +1,11 @@
 package com.example.task01;
 
-import java.io.IOException;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class Task01Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         // TODO С корректно реализованным методом ternaryOperator должен компилироваться и успешно работать следующий код:
 
@@ -22,8 +22,10 @@ public class Task01Main {
             Predicate<? super T> condition,
             Function<? super T, ? extends U> ifTrue,
             Function<? super T, ? extends U> ifFalse) {
-
-        return null; // your implementation here
+        Objects.requireNonNull(condition);
+        Objects.requireNonNull(ifTrue);
+        Objects.requireNonNull(ifFalse);
+        return t -> condition.test(t) ? ifTrue.apply(t) : ifFalse.apply(t);
 
     }
 }
