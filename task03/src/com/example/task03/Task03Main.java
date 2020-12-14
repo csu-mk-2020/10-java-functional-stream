@@ -14,7 +14,7 @@ public class Task03Main {
     public static void main(String[] args) {
 
         findMinMax(
-                Stream.of(2, 9, 5, 4, 8, 1, 3),
+                Stream.of(312,14,11,42,5,7,9,4,1423421,32,0,1),
                 Integer::compareTo,
                 (min, max) ->
                         System.out.println("min: " + min + " / max: " + max)
