@@ -17,7 +17,7 @@ public class Task03Main {
                 Stream.of(312,14,11,42,5,7,9,4,1423421,32,0,1),
                 Integer::compareTo,
                 (min, max) ->
-                        System.out.println("min: " + min + " / max: " + max)
+                        System.out.println("min: " + min + " | max: " + max)
         );
 
     }
