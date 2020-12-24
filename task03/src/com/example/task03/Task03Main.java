@@ -1,6 +1,8 @@
 package com.example.task03;
 
 import java.util.Comparator;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
@@ -21,6 +23,27 @@ public class Task03Main {
             Stream<? extends T> stream,
             Comparator<? super T> order,
             BiConsumer<? super T, ? super T> minMaxConsumer) {
+        Objects.requireNonNull(stream);
+        Objects.requireNonNull(order);
+        Objects.requireNonNull(minMaxConsumer);
+
+        AtomicReference<T> min = new AtomicReference<>();
+        AtomicReference<T> max = new AtomicReference<>();
+
+        stream.forEach(value -> {
+            try {
+                if (order.compare(value, min.get()) < 0) {
+                    min.set(value);
+                }
+                if (order.compare(value, max.get()) > 0) {
+                    max.set(value);
+                }
+            } catch (NullPointerException npe) {
+                min.set(value);
+                max.set(value);
+            }
+        });
+        minMaxConsumer.accept(min.get(), max.get());
 
         // your implementation here
     }
